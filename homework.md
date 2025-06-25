@@ -1,0 +1,11 @@
+- Create a Repository
+- Initialize the Repository
+- node_modules, package.json, package-lock.json
+- Insatll express
+- Create a server
+- Listen to port 7777
+- Write a request handler for /test, /hello
+- Install nodeman and update scripts inside package.json
+- what are dependencies
+- what is the use of -g while npm install
+- Difference between caret and tidle (^ vs ~)
