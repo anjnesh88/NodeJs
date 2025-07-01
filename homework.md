@@ -33,3 +33,12 @@
 - write a dummy auth middleware for admin
 - write a dummy auth middleware for all user routes, expect /user/login
 - Error handling using a app.use("/", err, req, res, next) = {};
+
+- Create a free cluster on mongoDB offical website
+- Install mongoose library 
+- Connect your application to the database /devTinder and get the connection URL
+- Call the connect DB function and connect to the database before start listening to the particular port
+- Create a user schema and user model
+- create /signUp API to add data to database
+- Push some document using API calls from postman
+- Error handling using try catch
