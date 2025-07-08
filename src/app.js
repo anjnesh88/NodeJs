@@ -61,10 +61,10 @@ app.patch("/updateUser", async(req,res)=>{
     const userId = req.body.userId;
     const data = req.body;
     try{
-        const user = await User.findByIdAndUpdate(userId, data);
+        const user = await User.findByIdAndUpdate(userId, data, {runValidators: true});
         res.send('User updated successfully')
     }catch(err){
-       res.status(400).send("Something went wrong"); 
+       res.status(400).send("Update failed: "+ err.message); 
     }
 });
 
@@ -74,10 +74,10 @@ app.patch("/updateUserByEmailId", async(req, res)=>{
     const data = req.body;
     console.log(emailId, data)
     try{
-        const user = await User.findOneAndUpdate(emailId, data);
+        const user = await User.findOneAndUpdate(emailId, data, {runValidators: true});
         res.send("User updated successfully using email id");
     }catch(err){
-       res.status(400).send("Something went wrong"); 
+       res.status(400).send("Update failed: "+ err.message); 
     }
 })
 
