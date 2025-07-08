@@ -57,10 +57,23 @@ app.delete("/deleteUser", async(req,res)=>{
 })
 
 //Update data of the user by using id
-app.patch("/updateUser", async(req,res)=>{
-    const userId = req.body.userId;
+app.patch("/updateUser/:userId", async(req,res)=>{
+    const userId = req.params?.userId;
     const data = req.body;
-    try{
+    try{    
+        const allowed_Update = ["userId","photoUrl", "about", "age", "skills"];
+
+        const isUpdateAllowed = Object.keys(data).every(keys =>
+            allowed_Update.includes(keys)
+        );
+
+        if(!isUpdateAllowed){
+            throw new Error("Update not allowed")
+        }
+
+        if(data?.skills.length > 10){
+            throw new Error("Skills cannot be more than 10");
+        }
         const user = await User.findByIdAndUpdate(userId, data, {runValidators: true});
         res.send('User updated successfully')
     }catch(err){
@@ -69,10 +82,9 @@ app.patch("/updateUser", async(req,res)=>{
 });
 
 //Update data of the user by using email id
-app.patch("/updateUserByEmailId", async(req, res)=>{
-    const {emailId} = req.body.emailId;
+app.patch("/updateUserByEmailId/:emailId", async(req, res)=>{
+    const {emailId} = req.params?.emailId;
     const data = req.body;
-    console.log(emailId, data)
     try{
         const user = await User.findOneAndUpdate(emailId, data, {runValidators: true});
         res.send("User updated successfully using email id");
