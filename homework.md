@@ -81,3 +81,5 @@
 - UserAuth middleware
 - Add the userAuth middleware in the profile API and a new send connection API
 - Set the expiry of JWT token and cookies
+- Create userSchema method to getJWT()
+- Create userSchema method to comparePassword 
