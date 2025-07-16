@@ -39,14 +39,23 @@ authRouter.post("/login", async(req, res)=>{
             const token = await user.getJWT();
             //Add the token to cookie and send the response back to the user
             res.cookie("token", token, {expires: new Date(Date.now() + 8 * 3600000)});
-            res.send("User Logged in successful!");
+            res.send("User Logged in successfully!");
         }else{
             throw new Error("Password is not correct");
         }
     }catch(err){
         res.status(400).send("Error: " + err.message)
     }
-})
+});
+
+authRouter.post("/logout", async(req, res)=>{
+    try{
+        res.clearCookie("token");
+        res.send("User Logged out succedfullly")
+    }catch(err){
+        res.status(400).send("Error: " + err.message)
+    }
+});
 
 
 module.exports = authRouter;
