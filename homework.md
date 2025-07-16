@@ -83,3 +83,7 @@
 - Set the expiry of JWT token and cookies
 - Create userSchema method to getJWT()
 - Create userSchema method to comparePassword 
+
+- Explore tinder API's
+- Create a list of all API's you can think of in devTinder
+- Group multiple routes under respective routers
