@@ -41,8 +41,8 @@ profileRouter.patch("/profile/password", userAuth, async(req, res)=>{
     try{
         const loggedInUser = req.user;
         if(req.body.oldPassword){
-            const isPasswordValid = await bcrypt.compare(req.body.oldPassword, loggedInUser.password);
-            if(isPasswordValid){
+            const isOldPasswordValid = await bcrypt.compare(req.body.oldPassword, loggedInUser.password);
+            if(isOldPasswordValid){
                 if(!validator.isStrongPassword(req.body.newPassword)){
                     throw new Error("Enter a strong password: " + req.body.newPassword);
                 }
