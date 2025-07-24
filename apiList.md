@@ -12,10 +12,8 @@
 
 ## connectionRequestRouter
 - POST /request/send/:status/:userId //status can be ignored or interested
-- Post /request/send/ignored/:userID
+- Post /request/review/:status/:requestId //status can be accepted or rejected
 
-- Post /request/review/accepted/:requestId
-- Post /request/review/rejected/:requestId
 
 ## userRouter
 - GET /user/connections
@@ -23,7 +21,7 @@
 - GET /user/feed - get you the profiles of other user on platform
 
 
-Status: ignored, interested, accpeted, rejected
+Status: ignored, interested, accepted, rejected
 
 
 
