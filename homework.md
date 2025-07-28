@@ -105,3 +105,6 @@
 - Advantage and disadvantage of creating index for the DB
 
 - Write code with proper validation for Post /request/review/:status/:requestId
+- Thought process for GET vs POST API call
+- Read about ref and populate 
+- Create get API for request/receive with all the checks
