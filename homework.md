@@ -108,3 +108,6 @@
 - Thought process for GET vs POST API call
 - Read about ref and populate 
 - Create get API for request/receive with all the checks
+
+- Logic for get /feed API
+- Explore the $nin, $and, $ne and other queries operators
