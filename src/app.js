@@ -1,33 +1,48 @@
-const express = require('express');
-const { connectDb } = require('./config/database');
+const express = require("express");
+const connectDB = require("./config/database");
 const app = express();
-let cookieParser = require('cookie-parser');
-const cors = require('cors');
+const cookieParser = require("cookie-parser");
+const cors = require("cors");
+const http = require("http");
 
-//To get the req in readable form
+require("dotenv").config();
+
+require("./utils/cronjob");
+
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials: true,
+  })
+);
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors({
-  origin: 'http://localhost:5173', // ✅ Must be exact origin (not '*')
-  credentials: true                // ✅ Allow credentials like cookies
-}));
 
-const authRouter = require('./routes/auth');
-const profileRouter = require('./routes/profile');
-const requestRouter = require('./routes/requests');
-const userRouter = require('./routes/user');
+const authRouter = require("./routes/auth");
+const profileRouter = require("./routes/profile");
+const requestRouter = require("./routes/request");
+const userRouter = require("./routes/user");
+const paymentRouter = require("./routes/payment");
+const initializeSocket = require("./utils/socket");
+const chatRouter = require("./routes/chat");
 
-app.use('/', authRouter);
-app.use('/', profileRouter);
-app.use('/', requestRouter);
-app.use('/', userRouter);
+app.use("/", authRouter);
+app.use("/", profileRouter);
+app.use("/", requestRouter);
+app.use("/", userRouter);
+app.use("/", paymentRouter);
+app.use("/", chatRouter);
 
+const server = http.createServer(app);
+initializeSocket(server);
 
-connectDb().then(()=>{
-    console.log("Database connection is established");
-    app.listen(3000, ()=>{
-    console.log('server is running')
-});
-}).catch(err=>{
-    console.error("Database cannot be connected: " + err);
-})
+connectDB()
+  .then(() => {
+    console.log("Database connection established...");
+    server.listen(process.env.PORT, () => {
+      console.log("Server is successfully listening on port 7777...");
+    });
+  })
+  .catch((err) => {
+    console.error("Database cannot be connected!!");
+  });

@@ -1,4 +1,4 @@
-# DevTinder API's
+# DevTinder APIs
 
 ## authRouter
 - POST /signup
@@ -8,20 +8,16 @@
 ## profileRouter
 - GET /profile/view
 - PATCH /profile/edit
-- PATCH /profile/password //forgot password API
+- PATCH /profile/password // Forgot password API
 
 ## connectionRequestRouter
-- POST /request/send/:status/:userId //status can be ignored or interested
-- Post /request/review/:status/:requestId //status can be accepted or rejected
-
+- POST /request/send/:status/:userId 
+- POST /request/review/:status/:requestId
 
 ## userRouter
 - GET /user/requests/received
 - GET /user/connections
-- GET /user/feed - get you the profiles of other user on platform
+- GET /user/feed - Gets you the profiles of other users on platform
 
 
-Status: ignored, interested, accepted, rejected
-
-
-
+Status: ignored, interested, accepeted, rejected
