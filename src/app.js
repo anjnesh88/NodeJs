@@ -7,7 +7,10 @@ const cors = require('cors');
 //To get the req in readable form
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors());
+app.use(cors({
+  origin: 'http://localhost:5173', // ✅ Must be exact origin (not '*')
+  credentials: true                // ✅ Allow credentials like cookies
+}));
 
 const authRouter = require('./routes/auth');
 const profileRouter = require('./routes/profile');
