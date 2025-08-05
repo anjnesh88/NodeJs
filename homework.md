@@ -111,3 +111,36 @@
 
 - Logic for get /feed API
 - Explore the $nin, $and, $ne and other queries operators
+
+
+#Deployment
+- signup on AWS
+- launch instance
+- chmod 400 <secret_Key>.pem
+i-022a5baee4612c01f (DevTinder)
+Open an Git bash.
+
+Locate your private key file. The key used to launch this instance is Vasu.pem
+
+Run this command, if necessary, to ensure your key is not publicly viewable.
+chmod 400 "Vasu.pem"
+
+Connect to your instance using its Public DNS:
+ec2-52-66-235-247.ap-south-1.compute.amazonaws.com
+
+Example:
+
+ssh -i "Vasu.pem" ubuntu@ec2-52-66-235-247.ap-south-1.compute.amazonaws.com
+- Install Node version on the server which is installed on the local machine
+- Clone repos to the aws system
+- Frontend
+    - install the dependency in the aws system through git bash
+    - npm run build
+    - sudo apt update
+    - sudo apt install ngnix
+    - sudo systemctl start nginx
+    - sudo systemctl enable nginx
+    - copy code from dist(build files) to /var/www/html/
+    - sudo scp -r dist/* /var/www/html/ (for copying we use this)
+    - Enable port 80 of your instance 
+
